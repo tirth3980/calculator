@@ -32,7 +32,7 @@ function Calculator() {
     
     if (value === "pm") {
       if (operand === "") return;
-      //get the last char
+    
       let calculated;
       if (Number(operand.slice(-1))) {
         calculated = eval(operand);
