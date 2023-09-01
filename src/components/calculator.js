@@ -8,7 +8,7 @@ function Calculator() {
   const handleOperand = (e) => {
     const value = e.target.value;
 
-    // set operaands inputs
+    
     setOperand((operand) => operand + value);
   };
 
@@ -19,17 +19,17 @@ function Calculator() {
       if (operand === "") return;
     }
 
-    // if no value in operand stop
+    
     if (value === "ac") {
       setOperand("");
       setAnswer(0);
 
-      // Check if we have a prev answer > 0
+      
       if (answer > 0) setPrevAnswer(answer);
       return;
     }
 
-    // handle plush and minus sign
+    
     if (value === "pm") {
       if (operand === "") return;
       //get the last char
@@ -54,24 +54,19 @@ function Calculator() {
       return;
     }
 
-    /* last test for users */
-    if (value === "%") {
+      if (value === "%") {
       if (operand === "") return;
     }
 
     let newOperand;
-    // get last operand value
     if (operand.slice(-1) === value) {
       newOperand = operand.slice(0, -1);
       setOperand(newOperand + value);
     } else {
-      // get the last input operator & check if is a number
-      if (!Number(operand.slice(-1))) {
-        // remove the last selected char
-        newOperand = operand.slice(0, -1);
+     if (!Number(operand.slice(-1))) {
+     newOperand = operand.slice(0, -1);
 
-        // checks if the last operand contains a zero
-        if (Number(operand.slice(-1)) === 0) {
+          if (Number(operand.slice(-1)) === 0) {
           setOperand(newOperand + `0` + value);
           return;
         } else {
@@ -80,7 +75,6 @@ function Calculator() {
         }
       } else if (operand.slice(-1) === "ac") {
         setOperand("");
-        // Check if we have a prev answer > 0
         if (answer > 0) setAnswer(0);
       } else if (operand.includes("/")) {
         newOperand = eval(operand);
@@ -88,16 +82,16 @@ function Calculator() {
       }
     }
 
-    // if the last inputed digit is not a number stop
+    
     const lastDigit = operand.slice(-1);
     if (!Number(lastDigit)) return;
 
-    // if Dot(.) exists don't add again
+    
     if (!(operand === "." || operand.includes("."))) {
       setOperand((operand) => operand + value);
     }
 
-    // Swicth for some arithmetic operations
+    
     switch (value) {
       case "ac":
         setOperand("");
@@ -127,7 +121,7 @@ function Calculator() {
     }
   };
 
-  // Delete last char from operand
+  
   const handleDelete = () => {
     if (operand.length > 0) {
       setOperand((op) => op.slice(0, -1));
@@ -144,13 +138,13 @@ function Calculator() {
         <div className="ctc c-screen">
           <div className="c-history-answer">
             <span>
-              {/* 1,234 */}
+  
               {prevAnswer}
             </span>{" "}
           </div>
           <div className="c-answer">
             <span>
-              {/* 0 */}
+  
               {answer}
             </span>
           </div>
@@ -161,7 +155,7 @@ function Calculator() {
             <i class="fa-solid fa-delete-left">Delete</i>
           </button>
           <span>
-            {/* 1234 + 5678 */}
+  
             {operand ? operand : "0"}
           </span>
         </div>
